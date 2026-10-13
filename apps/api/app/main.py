@@ -1,0 +1,31 @@
+"""TrendScout API entrypoint."""
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.config import APP_VERSION, get_settings
+from app.routers import health, me, niches, webhooks
+
+
+def create_app() -> FastAPI:
+    settings = get_settings()
+    app = FastAPI(
+        title="TrendScout API",
+        version=APP_VERSION,
+        docs_url="/docs" if settings.environment == "development" else None,
+    )
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.cors_origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    app.include_router(health.router)
+    app.include_router(me.router)
+    app.include_router(webhooks.router)
+    app.include_router(niches.router)
+    return app
+
+
+app = create_app()

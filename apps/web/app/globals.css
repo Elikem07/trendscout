@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0b0d10;
+  --surface: #13161b;
+  --surface-2: #1b1f27;
+  --border: #23272e;
+  --fg: #e7e9ec;
+  --muted: #5c6370;
+  --accent: #4f8cff;
+
+  /* trend label colors */
+  --emerging: #3dd68c;
+  --rising: #61afef;
+  --flat: #5c6370;
+  --declining: #e5c07b;
+  --saturated: #e06c75;
+
+  --background: var(--bg);
+  --foreground: var(--fg);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* monospace data cells */
+.mono { font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace; }
+
+/* opportunity fill bar */
+.opp-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+.opp-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.2s ease;
+}
+
+/* label pill */
+.label-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* table row hover */
+.niche-row { cursor: pointer; border-bottom: 1px solid var(--border); }
+.niche-row:hover { background: var(--surface-2); }
+.niche-row.selected { background: var(--surface-2); border-left: 2px solid var(--accent); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
